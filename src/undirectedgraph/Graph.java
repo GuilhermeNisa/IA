@@ -49,24 +49,24 @@ public class Graph {
 				Node sol = searchSolution(i, temp.getLabel(), algID);
 				g.addEdge(i, temp.getLabel(), sol.getPathCost());
 
-				for (Vertex temp2 : this.getVertexSet(pr[j+1]).getVertices()) {
+				if(j+1 != size-1){
 
-					Node sol2 = searchSolution(temp.getLabel(), temp2.getLabel(), algID);
-					g.addEdge(temp.getLabel(), temp2.getLabel(), sol.getPathCost());
+					for (Vertex temp2 : this.getVertexSet(pr[j+1]).getVertices()) {
+
+						Node sol2 = searchSolution(temp.getLabel(), temp2.getLabel(), algID);
+						g.addEdge(temp.getLabel(), temp2.getLabel(), sol2.getPathCost());
+					}
+
+				} else {
+
+					Node sol3 = searchSolution(temp.getLabel(), f, algID);
+					g.addEdge(temp.getLabel(), f, sol3.getPathCost());
+
 				}
 
 			}
 
 		}
-
-		for (Vertex temp : this.getVertexSet(pr[size-1]).getVertices()) {
-
-			g.addVertex(temp.getLabel(), temp.getLatitude(), temp.getLongitude());
-
-			Node sol = searchSolution(temp.getLabel(), f, algID);
-			g.addEdge(temp.getLabel(), f, sol.getPathCost());
-		}
-
 
 		return g.searchSolution(i,f,algID);
 	}

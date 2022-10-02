@@ -19,7 +19,7 @@ public class Main {
     String[] p = new String[2];
     p[0] = "Dobrogea";
     p[1] = "Banat";
-    n = graph.searchSolution3("Arad", "Bucharest",p , Algorithms.UniformCostSearch);
+    n = graph.searchSolution3("Arad", "Bucharest",p , Algorithms.AStarSearch);
     graph.showSolution(n);
 
     }
